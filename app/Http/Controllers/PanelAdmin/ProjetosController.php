@@ -14,7 +14,7 @@ class ProjetosController extends Controller {
 
     private $statusProj;
     private $projeto;
-    private $totalProjeto = 15;
+    private $totalProjeto = 30;
 
     public function __construct(Projeto $projeto) {
         $this->middleware('auth:admin');
@@ -25,7 +25,7 @@ class ProjetosController extends Controller {
     public function index() {
         $title = 'Listagem de projetos';
         $status = StatusProj::orderBy('ordem', 'ASC')->get();
-        $projetos = $this->projeto->select('id', 'titulo', 'user_id', 'status_projs_id', 'created_at')->orderBy('created_at', 'desc')->paginate($this->totalProjeto);
+        $projetos = $this->projeto->select('id', 'titulo', 'user_id', 'status_projs_id','pago', 'created_at')->orderBy('created_at', 'desc')->paginate($this->totalProjeto);
         return view('admin.projetos.index', compact('projetos', 'title', 'status'));
     }
 
@@ -129,6 +129,16 @@ class ProjetosController extends Controller {
             return redirect()->route('projetos.index');
         else
             return redirect()->route('projetos.show', $id)->with(['errors' => 'Falha ao deletar']);
+    }
+    
+    public function confirmarPagamento($id) {
+        $projeto = $this->projeto->find($id);
+        $projeto->pago = true;
+        $update = $projeto->update();
+        if ($update)
+            return redirect()->route('projetos.index');
+        else
+            return redirect()->route('projetos.edit', $id)->with(['errors' => 'Falha ao editar']);
     }
 
     public function avanacarStatus(Request $request, $id) {

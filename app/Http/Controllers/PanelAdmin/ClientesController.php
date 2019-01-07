@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Projeto;
+use App\StatusProj;
 
 class ClientesController extends Controller {
 
@@ -21,7 +22,7 @@ class ClientesController extends Controller {
     public function index() {
         $title = 'Listagem de clientes';
         $users = $this->user->select('name', 'id', 'email')->paginate($this->totalUser);
-        
+
         return view('admin.clientes.index', compact('users', 'title'));
     }
 
@@ -63,7 +64,7 @@ class ClientesController extends Controller {
         );
         $tituloPage = 'Adicionar Cliente';
 
-        return view('admin.clientes.create-edit', compact('tituloPage','estadosBrasileiros'));
+        return view('admin.clientes.create-edit', compact('tituloPage', 'estadosBrasileiros'));
     }
 
     public function store(Request $request) {
@@ -112,7 +113,7 @@ class ClientesController extends Controller {
             'TO' => 'Tocantins'
         );
         $cliente = $this->user->find($id);
-        return view('admin.clientes.create-edit', compact('cliente', 'tituloPage','estadosBrasileiros'));
+        return view('admin.clientes.create-edit', compact('cliente', 'tituloPage', 'estadosBrasileiros'));
     }
 
     public function update(Request $request, $id) {
@@ -138,16 +139,18 @@ class ClientesController extends Controller {
 
     public function projetos($user_id) {
         $tituloPage = 'Lista de projetos';
-        $user = User::where('id',$user_id)->first();
-        $projetos = Projeto::where('user_id',$user_id)->get();
-        
-        return view('admin.clientes.projetos', compact('projetos', 'tituloPage','user'));
+        $user = User::where('id', $user_id)->first();
+        $projetos = Projeto::where('user_id', $user_id)->paginate();
+        $status = StatusProj::orderBy('ordem', 'ASC')->get();
+
+
+        return view('admin.projetos.index', compact('projetos', 'tituloPage', 'user','status'));
     }
 
     public function senha($user_id) {
-        $cliente = User::where('id',$user_id)->first();
-        
-        $tituloPage = 'Alterar senha de '.$cliente->name;
+        $cliente = User::where('id', $user_id)->first();
+
+        $tituloPage = 'Alterar senha de ' . $cliente->name;
         return view('admin.clientes.senha', compact('cliente', 'tituloPage', 'estadosBrasileiros'));
     }
 
@@ -161,14 +164,14 @@ class ClientesController extends Controller {
         else
             return redirect()->route('clientes.senha', $id)->with(['errors' => 'Falha ao editar']);
     }
-    
+
     public function busca(Request $request) {
         $title = 'Listagem de clientes';
         $dataForm = $request->all();
         $users = User::where('name', 'LIKE', '%' . $dataForm['search'] . '%')->paginate($this->totalUser);
-        
+
 
         return view('admin.clientes.index', compact('users', 'title'));
-        
     }
+
 }

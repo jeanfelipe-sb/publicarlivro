@@ -6,6 +6,10 @@ Trabalharemos com afinco para lhe oferecer a cada dia os melhores serviços busc
 
 Aproveitamos a oportunidade para renovar votos de elevada estima e consideração.
 
+@component('mail::button', ['url' => route('painel.home')])
+Fazer login
+@endcomponent
+
 Atenciosamente,<br>
 {{ config('app.name') }}
 @endcomponent

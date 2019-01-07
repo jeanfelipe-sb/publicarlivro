@@ -29,6 +29,7 @@
                 <th scope="col">TÍTULO</th>
                 <th scope="col">CLIENTE</th>
                 <th scope="col">STATUS</th>
+                <th scope="col">PAGO</th>
                 <th scope="col">Ação</th>
             </tr>
         </thead>
@@ -54,20 +55,68 @@
                             @endforeach
                         </select>
                         <button title="Avançar status" type="submit" class="btn btn-info">Ok</button>
-
+                    </form>
+                </td>
+                <td>
+                    @if($projeto->pago == false)
+                    <form class="form" method="post" action="{{route('projetos.confirmar.pagamento',$projeto->id)}}">
+                        {!! method_field('PUT')  !!}
+                        {!! csrf_field()!!}   
+                        <button type="submit" href="" class="btn btn-success">Confirmar pagamento</button>
                     </form>
 
+                    @else
+                    Pagamento confirmado!
+                    @endif
                 </td>
                 <td>  
-                    <a href="{{route('projetos.edit',$projeto->id)}}" title="Editar dados" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <form class="form" method="post" action="{{route('projetos.destroy',$projeto->id)}}">
+                        {!! method_field('DELETE')  !!}
+                        {!! csrf_field()!!}  
+                        <a href="{{route('projetos.edit',$projeto->id)}}" title="Editar dados" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#teste" data-userid="<?php echo $projeto->id ?>">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
 
 
                 </td>
             </tr>
-            @endforeach
+
+            <!-- Modal -->
+        <div class="modal fade" id="teste" tabindex="-1" role="dialog" aria-labelledby="exampleMotedalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Deletar projeto?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Deseja realmente deletar este projeto <b>{{$projeto->titulo}}</b>? 
+
+                    </div>
+                    <div class="modal-footer">
+                        <form class="form" method="post" action="{{route('projetos.destroy',$projeto->id)}}">
+                            {!! method_field('DELETE')  !!}
+                            {!! csrf_field()!!}  
+                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> DELETAR</span></button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
         </tbody>
     </table>
 </div>
 
 {!! $projetos->links() !!}
+
+
+
+
 @endsection

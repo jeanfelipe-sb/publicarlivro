@@ -18,11 +18,18 @@ class ProjetosController extends Controller {
     private $statusProj;
     private $projeto;
     private $totalProjeto = 15;
+    
+   
 
     public function __construct(Projeto $projeto) {
         $this->middleware('auth');
         //$this->middleware('auth:admin',['except' => 'index']);
         $this->projeto = $projeto;
+    }
+      public function criarProjeto() {
+        $titulo = 'Criar Projeto';
+        $planos = Plano::all();
+        return view('site.publique', compact('planos','titulo'));
     }
 
     public function index() {
@@ -69,12 +76,12 @@ class ProjetosController extends Controller {
                 $upload = $request->original_file->storeAs('originais', $nameFile);
                 // Verifica se NÃO deu certo o upload (Redireciona de volta)
                 if (!$upload) {
-                    return redirect()->back()->with('message', 'Erro ao enviar o arquivo');
+                    return redirect()->back()->withInput()->with('message', 'Erro ao enviar o arquivo');
                 }
             }
         } else {
 
-            return redirect()->back()->with('message', 'Extensão do arquivo deve ser .doc ou .docx');
+            return redirect()->back()->withInput()->with('message', 'Extensão do arquivo deve ser .doc ou .docx');
         }
 
         //estrutura a array
@@ -105,7 +112,7 @@ class ProjetosController extends Controller {
         if ($insert) {
             return redirect()->route('painel.home');
         } else {
-            return redirect()->back()->with('message', 'Houve um erro inesperado.');
+            return redirect()->back()->withInput()->with('message', 'Houve um erro inesperado.');
         }
     }
 
@@ -193,7 +200,7 @@ class ProjetosController extends Controller {
         $dataForm = $request->all();
 
         if ($request->paginas <  $request->pc) {
-            return redirect()->back()->with('message', 'O número de páginas coloridas não ser maior que o total de páginas. ');
+            return redirect()->back()->withInput()->with('message', 'O número de páginas coloridas não ser maior que o total de páginas. ');
         }
 
         //Procura o status no db
@@ -227,12 +234,12 @@ class ProjetosController extends Controller {
                 $upload = $request->original_file->storeAs('originais', $nameFile);
                 // Verifica se NÃO deu certo o upload (Redireciona de volta)
                 if (!$upload) {
-                    return redirect()->back()->with('message', 'Erro ao enviar o arquivo');
+                    return redirect()->back()->withInput()->with('message', 'Erro ao enviar o arquivo');
                 }
             }
         } else {
 
-            return redirect()->back()->with('message', 'Extensão do arquivo deve ser .doc ou .docx');
+            return redirect()->back()->withInput()->with('message', 'Extensão do arquivo deve ser .doc ou .docx');
         }
 
 //        die();
@@ -309,7 +316,7 @@ class ProjetosController extends Controller {
         if ($insert)
             return redirect()->route('painel.home');
         else
-            return redirect()->back()->with('message', 'Nao foi possível criar projeto');
+            return redirect()->back()->withInput()->with('message', 'Nao foi possível criar projeto');
     }
 
 }

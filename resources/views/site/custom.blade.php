@@ -26,10 +26,20 @@
             {{ session()->get('message') }}
         </div>
         @endif
-        <h3 class="text-heading">Texto explicativo</h3>
+        <h3 class="text-heading">Orientações - Como preparar seu arquivo para um correto orçamento</h3>
         <p class="sample-text">
-            Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video renters with their big project.  But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on your doorstep?  You need to create eye-popping artwork and have your project replicated. Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results: 
+        <ul class="unordered-list">
+            <li>Seu arquivo precisa estar no WORD com extensão “.doc” ou “.docx”.</li>
 
+            <li>A fonte a ser utilizada é Arial 12.</li>
+            <li>O espaçamento entre as linhas é de 1,5.</li>
+            <li>Tamanho da página tem que ser de 15cmx21cm.</li>
+            Depois de aplicadas essas configurações, terá a Quantidade de Página total do seu livro.<br><br>
+            <b>Agora o último passo:</b> feito isso, precisamos saber a Quantidade de Páginas Coloridas.<br>
+            <li>Diminua do total de páginas e terá a Quantidade de Páginas Preta e Branca.</li>
+            Porque isso é importante?<br>
+            Porque há um custo para as páginas coloridas e outra para páginas em preto e branco, e na hora de montagem do livro, os encaixes precisam ser coordenados entre as coloridas e preto e branco.
+        </ul>
         </p>
     </div>
 </section>
@@ -66,11 +76,12 @@
                             </div>
                         </div>
                     </div>                    
-                    <div class="col-lg-6 col-md-12">                        
+
+                    <div class="col-lg-6 col-md-12">
                         <div class="single-element-widget col-md-6 col-lg-9">
-                            Total de páginas     
+                            Quantidade de páginas preto e braco
                             <div class="mt-10 ">
-                                <input value="{{old('paginas')}}" type="number" name="paginas" placeholder="Páginas" onkeypress='return SomenteNumero(event)' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Páginas'" required class="single-input" >
+                                <input id="n1" type="number" name="pb" onblur="calcular()" placeholder="Total de páginas" onkeypress='return SomenteNumero(event)' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Exemplares'" required class="single-input" >
                             </div>                           
                         </div>                      
                     </div>
@@ -78,7 +89,15 @@
                         <div class="single-element-widget col-md-6 col-lg-9">
                             Quantidade de páginas coloridas
                             <div class="mt-10 ">
-                                <input value="{{old('pc')}}" type="number" name="pc" placeholder="Coloridas" onkeypress='return SomenteNumero(event)' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Coloridas'" required class="single-input" >
+                                <input id="n2" value="{{old('pc')}}" onblur="calcular()" type="number" name="pc" placeholder="Coloridas" onkeypress='return SomenteNumero(event)' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Coloridas'" required class="single-input" >
+                            </div>                           
+                        </div>                      
+                    </div>
+                    <div class="col-lg-6 col-md-12">                        
+                        <div class="single-element-widget col-md-6 col-lg-9">
+                            Total de páginas     
+                            <div class="mt-10 ">
+                                <input id="resultado" disabled value="{{old('paginas')}}" type="number" name="paginas" placeholder="Páginas" onkeypress='return SomenteNumero(event)' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Páginas'" required class="single-input" >
                             </div>                           
                         </div>                      
                     </div>
@@ -139,6 +158,14 @@
             else
                 return false;
         }
+    }
+</script>
+
+<script language='JavaScript'>
+    function calcular() {
+        var n1 = parseInt(document.getElementById('n1').value, 10);
+        var n2 = parseInt(document.getElementById('n2').value, 10);
+        document.getElementById('resultado').value = n1 + n2;
     }
 </script>
 @endsection

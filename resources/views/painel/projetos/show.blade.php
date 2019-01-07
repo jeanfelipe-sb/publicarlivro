@@ -15,6 +15,9 @@
         <p class="sample-text">
             <br/>
             <b>FASE ATUAL DO PROJETO:</b> {{$projeto->statusProj->nome}}
+            @if($projeto->pago == 0)
+            <a href="{{route('site.pagamento',$projeto->id)}}" class="btn btn-success" title="Realizar pagamento" class="actions view">Realizar Pagamento</a>
+            @endif
             <br/>
             <b>PRÓXIMA FASE:</b> 
             @if($proxima_fase == null)           
@@ -41,6 +44,15 @@
             <b>Preço total:</b> R$ {{number_format($projeto->valor, 2, ',', '.')}}
             <br/>
             <b>Observação:</b> {{$projeto->observacao}}
+            <br><br>
+            @if($projeto->original_file != null)
+            <b>Arquivo do original: </b>
+            <a class="btn btn-primary" href="{{ url("admin/download/{$projeto->original_file}" )}}" target="_blank">
+                Baixar arquivo
+            </a>
+            <br>
+            <br>
+            @endif
         </p>
     </div>
 </section>

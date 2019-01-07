@@ -35,8 +35,9 @@ class SiteController extends Controller {
     }
 
     public function publique() {
+        $titulo = 'Publique agora';
         $planos = Plano::all();
-        return view('site.publique', compact('planos'));
+        return view('site.publique', compact('planos','titulo'));
     }
 
 }

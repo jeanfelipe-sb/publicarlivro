@@ -36,6 +36,12 @@
 
                 <ul class="list-unstyled components">
                     <li>
+                        <a href="{{ route('criar.projeto') }}">
+                            <i class="fa fa-book"></i>
+                            Criar Projeto
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('painel.home') }}">
                             <i class="fa fa-book"></i>
                             Meus Projetos

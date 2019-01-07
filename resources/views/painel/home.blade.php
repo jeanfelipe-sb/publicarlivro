@@ -18,10 +18,10 @@
     <tbody>
         @foreach($projetos as $projeto)
         <tr>            
-            <td><a href="{{route('projetos.show',$projeto->id)}}">{{$projeto->id}}</a></td>
-            <td><a href="{{route('projetos.show',$projeto->id)}}">{{$projeto->titulo}}</a></td>
-            <td><a href="{{route('projetos.show',$projeto->id)}}">{{$projeto->paginas}} Págs.</a></td>
-            <td><a href="{{route('projetos.show',$projeto->id)}}">R$ {{number_format($projeto->valor, 2, ',', '.')}}</a></td>
+            <td><a href="{{route('painel.projetos.show',$projeto->id)}}">{{$projeto->id}}</a></td>
+            <td><a href="{{route('painel.projetos.show',$projeto->id)}}">{{$projeto->titulo}}</a></td>
+            <td><a href="{{route('painel.projetos.show',$projeto->id)}}">{{$projeto->paginas}} Págs.</a></td>
+            <td><a href="{{route('painel.projetos.show',$projeto->id)}}">R$ {{number_format($projeto->valor, 2, ',', '.')}}</a></td>
             <td>
                 <div class="single-skill">                        
                     <div class="skill" data-width="{{$projeto->statusProj->porcentagem}}"></div>

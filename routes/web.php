@@ -52,6 +52,9 @@ Route::prefix('admin')->group(function() {
     Route::resource('/customs', 'PanelAdmin\CustomController');
     Route::get('/clientes-projetos/{user}', 'PanelAdmin\ClientesController@projetos')->name('clientes.projetos');
     Route::put('/projetos/avancar/{projeto}', 'PanelAdmin\ProjetosController@avanacarStatus')->name('clientes.projetos.avancar');
+    Route::put('/projetos/confirmar-pagamento/{projeto}', 'PanelAdmin\ProjetosController@confirmarPagamento')->name('projetos.confirmar.pagamento');
+    
+    
     Route::post('/projetos/busca', 'PanelAdmin\ProjetosController@busca');
     Route::post('/clientes/busca', 'PanelAdmin\ClientesController@busca');
     Route::post('/users-admin/busca', 'PanelAdmin\UserAdminController@busca');
@@ -71,6 +74,7 @@ Route::prefix('admin')->group(function() {
 });
 Route::prefix('painel')->group(function() {
     Route::get('/', 'PanelCliente\ProjetosController@index')->name('painel.home');
+    Route::get('/criar-projeto', 'PanelCliente\ProjetosController@criarProjeto')->name('criar.projeto');
     Route::get('/projetos/create{plano}', 'PanelCliente\ProjetosController@create')->name('painel.projetos.create');
     Route::post('/store{plano}', 'PanelCliente\ProjetosController@store')->name('panel.projetos.store');
     Route::post('/custom', 'PanelCliente\ProjetosController@customstore')->name('panel.projetos.custom');

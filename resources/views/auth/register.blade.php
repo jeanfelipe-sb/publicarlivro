@@ -210,6 +210,15 @@
                         </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="single-element-widget col-md-12">
+                                <h4>Bairro</h4>
+                                <div class="input-group-icon mt-10">
+                                    <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                                    <input id="bairro" type="text" name="bairro" placeholder="Insira seu Bairro" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Insira seu Bairro'" required class="single-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="single-element-widget col-md-12">
                                 <h4>E-mail</h4>
                                 <div class="mt-10">
                                     <div class="input-group-icon mt-10 form-group {{ $errors->has('email') ? ' has-error' : '' }}">

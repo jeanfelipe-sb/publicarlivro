@@ -46,21 +46,22 @@ use RegistersUsers;
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data) {
-        return Validator::make($data, [
-                    'name' => 'required|string|max:255',
-                    'sobrenome' => 'required|string|max:255',
-                    'cpf' => 'required|string|max:14',
-                    'telefone_principal' => 'required|string|max:9',
-                    'email' => 'required|string|email|max:255|unique:users',
-                    'password' => 'required|string|min:6|confirmed',
-                    'cep' => 'required|string|max:9',
-                    'ddd' => 'required|string|max:2',
-                    'estado' => 'required|string|max:2',
-                    'cidade' => 'required|string|max:255',
-                    'bairro' => 'required|string|max:255',
-                    'endereco' => 'required|string|max:255',
-                    'numero' => 'required|string|max:255',
-                        ], $messages = [
+        $rules = array(
+            'name' => 'required|string|max:255',
+            'sobrenome' => 'required|string|max:255',
+            'cpf' => 'required|string|max:14',
+            'telefone_principal' => 'required|string|max:9',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'cep' => 'required|string|max:9',
+            'ddd' => 'required|string|max:2',
+            'estado' => 'required|string|max:2',
+            'cidade' => 'required|string|max:255',
+            'bairro' => 'required|string|max:255',
+            'endereco' => 'required|string|max:255',
+            'numero' => 'required|string|max:255',
+        );
+        $validator = Validator::make($data, $rules, $messages = [
                     'name.required' => 'O campo name é de preenchimento obrigatório!',
                     'sobrenome.required' => 'O campo sobrenome é de preenchimento obrigatório!',
                     'cpf.required' => 'O campo CPF é de preenchimento obrigatório!',
@@ -77,6 +78,9 @@ use RegistersUsers;
                     'password.min' => 'O campo senha é necessário minido de 6 caracteres ',
                     'password.confirmed' => 'As senhas não conferem',
         ]);
+        
+
+        return $validator;
     }
 
     /**

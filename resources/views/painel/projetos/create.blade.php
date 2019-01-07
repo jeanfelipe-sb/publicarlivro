@@ -69,11 +69,13 @@
                 <input name="titulo" type="text" required min="0" value="{{old('titulo')}}" class="form-control" placeholder="Defina o titulo do projeto">
             </div>  
             <div class="form-group">
-                <label for="exampleInputEmail1">Autores</label>
+                <label for="exampleInputEmail1">   
+                    Nome dos Autores <b>  <br>*Inserir autores em ordem separados por ; (ponto e vírgula)   </b>
+                </label>
                 <input name="autores" type="text" required value="{{old('autores')}}" class="form-control" placeholder="Informe o nome dos autores do projeto">
             </div>         
             <div class="form-group">
-                <label for="exampleInputEmail1">Arquivo original</label><br>
+                <label for="exampleInputEmail1">Arquivo original    <br> <b>  **Apenas extensões .DOC ou .DOCX </b></label><br>
                 <input name="original_file" type="file" required >
             </div> 
             <br>
