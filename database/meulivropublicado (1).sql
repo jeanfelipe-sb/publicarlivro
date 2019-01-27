@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Dez-2018 às 21:25
+-- Generation Time: 27-Jan-2019 às 12:51
 -- Versão do servidor: 10.1.21-MariaDB
--- versão do PHP: 7.2.11
+-- versão do PHP: 7.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -60,15 +60,17 @@ CREATE TABLE `customs` (
   `capa` double NOT NULL,
   `editoracao` double NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `ordem` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `customs`
 --
 
-INSERT INTO `customs` (`id`, `tamanho`, `pb`, `pc`, `capa`, `editoracao`, `created_at`, `updated_at`) VALUES
-(1, '16x23', 0.04, 0.25, 1.8, 355, '2018-09-24 21:12:41', '2018-09-29 01:00:42');
+INSERT INTO `customs` (`id`, `tamanho`, `pb`, `pc`, `capa`, `editoracao`, `created_at`, `updated_at`, `ordem`) VALUES
+(1, '16x23', 0.04, 0.25, 1.8, 355, '2018-09-24 21:12:41', '2019-01-22 00:42:47', 1),
+(2, '12x23', 12, 13, 12, 200, '2019-01-22 00:49:42', '2019-01-22 00:50:09', 0);
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2018_09_17_130625_create_planos_table', 4),
 (7, '2018_09_20_215223_create_status_projs_table', 5),
 (8, '2018_09_20_222847_create_projetos_table', 6),
-(9, '2018_09_24_174725_create_customs_table', 7);
+(9, '2018_09_24_174725_create_customs_table', 7),
+(10, '2018_12_27_202817_add_softdelete_to_users_table', 8);
 
 -- --------------------------------------------------------
 
@@ -193,7 +196,7 @@ CREATE TABLE `projetos` (
   `prazo` date DEFAULT NULL,
   `observacao` text COLLATE utf8mb4_unicode_ci,
   `valor` double NOT NULL,
-  `preco_sugerido` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preco_sugerido` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `notas` text COLLATE utf8mb4_unicode_ci,
   `pago` tinyint(1) NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -211,15 +214,16 @@ CREATE TABLE `projetos` (
 --
 
 INSERT INTO `projetos` (`id`, `titulo`, `autores`, `paginas`, `tamanho`, `exemplares`, `endereco_entrega`, `prazo`, `observacao`, `valor`, `preco_sugerido`, `notas`, `pago`, `user_id`, `pb`, `pc`, `status_projs_id`, `original_file`, `created_at`, `updated_at`, `statuspagseguro`) VALUES
-(6, 'Primeiro Livro teste', 'testes', 400, '16x23', 15, 'Mesmo', '2018-12-27', 'teste', 2012.5, '', '', 0, 3, 0, 0, 6, NULL, '2018-09-28 23:21:55', '2018-09-28 23:21:55', NULL),
+(6, 'Primeiro Livro teste', 'testes', 400, '16x23', 15, 'Mesmo', '2018-12-27', 'teste', 2012.5, '', '', 1, 3, 0, 0, 2, NULL, '2018-09-28 23:21:55', '2018-12-27 23:05:56', NULL),
 (9, 'Meu livro personalizado', 'teste', 300, '16x23', 30, 'Mesmo', '2018-12-27', 'teste obs', 2620, '', '', 0, 3, 0, 0, 3, NULL, '2018-09-29 00:28:36', '2018-09-29 00:36:18', NULL),
-(10, 'Perso teste', 'teste', 150, '16x23', 15, 'Mesmo', '2018-12-27', 'teste', 829.75, '21', NULL, 1, 3, 0, 0, 6, NULL, '2018-09-29 00:52:46', '2018-10-15 16:56:41', NULL),
+(10, 'Perso teste', 'teste', 150, '16x23', 15, 'Mesmo', '2018-12-27', 'teste', 829.75, '21', NULL, 1, 3, 0, 0, 2, NULL, '2018-09-29 00:52:46', '2018-12-27 23:05:52', NULL),
 (11, 'dsaads', 'asdas', 150, '15x21', 9, 'Mesmo', '2018-11-26', '12', 499, '', '', 0, 3, 127, 0, 6, NULL, '2018-10-12 04:39:14', '2018-10-12 04:39:14', NULL),
 (12, 'fdsfd', 'fsdfds', 2134, '16x23', 233, 'Mesmo', '2018-11-29', '234324', 32112.9, '', '', 0, 3, 1900, 234, 6, NULL, '2018-10-15 05:31:29', '2018-10-15 05:31:29', NULL),
 (13, 'qweqw', 'qweqw', 200, '16x23', 14, 'Mesmo', '2019-01-13', 'qweqw', 999, '', '', 0, 3, 0, 0, 6, NULL, '2018-10-15 17:49:46', '2018-10-15 17:49:46', NULL),
 (14, 'teste 21102018', 'teste', 200, '16x23', 14, 'Mesmo', '2019-01-19', 'teste', 999, '30', NULL, 0, 3, 0, 0, 6, NULL, '2018-10-21 05:09:51', '2018-10-21 06:41:44', NULL),
 (15, 'teste', 'teste', 50, '21x28', 15, 'Mesmo', '2019-01-19', 'tssste', 799, '', '', 0, 3, 0, 50, 6, NULL, '2018-10-21 07:05:55', '2018-10-21 07:05:55', NULL),
-(16, 'Teste dia 18 de dezembro de 2018', 'Jean apenas', 50, '21x28', 15, 'Mesmo', '2019-03-18', NULL, 799, '', '', 0, 3, 0, 50, 6, '3-Teste-18-12-2018-5c18ded926c11.docx', '2018-12-18 13:49:45', '2018-12-18 13:49:45', NULL);
+(16, 'Teste dia 18 de dezembro de 2018', 'Jean apenas', 50, '21x28', 15, 'Mesmo', '2019-03-18', NULL, 799, '12', NULL, 1, 3, 0, 50, 2, '3-Teste-18-12-2018-5c18ded926c11.docx', '2018-12-18 13:49:45', '2018-12-27 23:05:44', NULL),
+(17, 'dasd', 'dsadas', 100, '16x23', 50, 'Mesmo', '2019-03-07', NULL, 1170, NULL, NULL, 0, 25, 50, 50, 6, '25-administracao-21-01-2019-5c46464c4dfbd.docx', '2019-01-22 00:23:08', '2019-01-22 00:51:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -270,19 +274,22 @@ CREATE TABLE `users` (
   `bairro` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `numero` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `complemento` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `sobrenome`, `email`, `password`, `remember_token`, `cpf`, `endereco`, `ddd`, `telefone_principal`, `telefone`, `cep`, `estado`, `cidade`, `bairro`, `numero`, `created_at`, `updated_at`) VALUES
-(2, 'João da silva', '', 'joao@email.com', '123456', NULL, '', '', 0, 0, '', '', '', '', '', 0, '2018-09-14 22:18:19', '2018-09-14 22:18:19'),
-(3, 'Teste', 'seilaa', 'teste@email.com', '$2y$10$Xdc3.Y/CS10h4VbYW.xNKuTg2v/1H.WPTQMz7aovsfS2AmxZghJti', '59ld2K3IjCZJLnFsMM3nHvywxbFMhzCHu7vKbRykcXPMWplb9tQ83Qgjl6Bm', '47276973603', 'Rua Doutor José de Dominicis', 12, 123456789, '12312312312', '83301350', 'PR', 'Piraquara', 'Jardim Esmeralda', 4, '2018-09-23 16:53:45', '2018-10-18 17:45:44'),
-(6, 'João da silva', 'seilaa', 'teste1@email.com', '$2y$10$IsPEiKfQQ/M6dU2qqvt/4usgxwKJi5KFKE70ZdQkmJJK3xUsiCFwq', 'kBFz8nBNMWrmeyxyQwqtf81KkJ4sPuOub9MEXZtHfP7ztQ0VVWfNdu481Loo', '47276973603', 'Rua Doutor José de Dominicis', 12, 123456678, NULL, '83301350', 'PR', 'Piraquara', 'Jardim Esmeralda', 21, '2018-10-20 20:18:14', '2018-10-20 20:18:14'),
-(7, 'Jean', 'Felipe', 'jiam16@yahoo.com.br', '$2y$10$BGOOzWPzEow7xjgk7Uaez.KrPX3/tS8fcGn6MlSCIc4aUSTQYBkFC', 'IYQMuRgNiyrBkn9f2GdZ1P9jnmY5Su4oWhVn3IZBMMMwb9kh7sLeYpLS7DeN', '47276973603', 'Rua Doutor José de Dominicis', 12, 123456678, '123124213', '83301350', 'PR', 'Piraquara', 'Jardim Esmeralda', 123, '2018-10-22 22:04:50', '2018-10-22 22:04:50'),
-(24, 'João da Silva', 'teste', 'jean_felipe2008@hotmail.com', '$2y$10$L2peVZ3YURtaJcMg8TQrMOtzU.CMJ0J/iXPmgIhNbIHMFUwL1uNGS', NULL, '08445100920', 'Rua Hercília C. Rodrigues', 21, 2121, '211221', '83301360', 'PI', 'Piraquara', 'Jardim Esmeralda', 12, '2018-11-28 01:29:35', '2018-11-28 01:29:35');
+INSERT INTO `users` (`id`, `name`, `sobrenome`, `email`, `password`, `remember_token`, `cpf`, `endereco`, `ddd`, `telefone_principal`, `telefone`, `cep`, `estado`, `cidade`, `bairro`, `numero`, `created_at`, `updated_at`, `deleted_at`, `complemento`) VALUES
+(2, 'João da silva', '', 'joao@email.com', '123456', NULL, '', '', 0, 0, '', '', '', '', '', 0, '2018-09-14 22:18:19', '2018-09-14 22:18:19', NULL, NULL),
+(3, 'Teste', 'seilaa', 'teste@email.com', '$2y$10$Xdc3.Y/CS10h4VbYW.xNKuTg2v/1H.WPTQMz7aovsfS2AmxZghJti', '59ld2K3IjCZJLnFsMM3nHvywxbFMhzCHu7vKbRykcXPMWplb9tQ83Qgjl6Bm', '47276973603', 'Rua Doutor José de Dominicis', 12, 123456789, '12312312312', '83301350', 'PR', 'Piraquara', 'Jardim Esmeralda', 4, '2018-09-23 16:53:45', '2018-10-18 17:45:44', NULL, NULL),
+(6, 'João da silva', 'seilaa', 'teste1@email.com', '$2y$10$IsPEiKfQQ/M6dU2qqvt/4usgxwKJi5KFKE70ZdQkmJJK3xUsiCFwq', 'kBFz8nBNMWrmeyxyQwqtf81KkJ4sPuOub9MEXZtHfP7ztQ0VVWfNdu481Loo', '47276973603', 'Rua Doutor José de Dominicis', 12, 123456678, NULL, '83301350', 'PR', 'Piraquara', 'Jardim Esmeralda', 21, '2018-10-20 20:18:14', '2018-10-20 20:18:14', NULL, NULL),
+(7, 'Jean', 'Felipe', 'jiam16@yahoo.com.br', '$2y$10$BGOOzWPzEow7xjgk7Uaez.KrPX3/tS8fcGn6MlSCIc4aUSTQYBkFC', 'IYQMuRgNiyrBkn9f2GdZ1P9jnmY5Su4oWhVn3IZBMMMwb9kh7sLeYpLS7DeN', '47276973603', 'Rua Doutor José de Dominicis', 12, 123456678, '123124213', '83301350', 'PR', 'Piraquara', 'Jardim Esmeralda', 123, '2018-10-22 22:04:50', '2018-10-22 22:04:50', NULL, NULL),
+(24, 'João da Silva', 'teste', 'jean_felipe2008@hotmail.com', '$2y$10$L2peVZ3YURtaJcMg8TQrMOtzU.CMJ0J/iXPmgIhNbIHMFUwL1uNGS', NULL, '08445100920', 'Rua Hercília C. Rodrigues', 21, 2121, '211221', '83301360', 'PI', 'Piraquara', 'Jardim Esmeralda', 12, '2018-11-28 01:29:35', '2018-11-28 01:29:35', NULL, NULL),
+(25, 'administracao', 'teste', 'testes@admin.com', '$2y$10$BByi9TODt/28cJkXkYeR/ORLCaadAgP1iJs5lFnV/kI2Aqj3kd5Ou', NULL, '08445100920', 'Rua Hercília C. Rodrigues', 21, 2121, '211221', '83301360', 'PR', 'Piraquara', 'Jardim Esmeralda', 12, '2019-01-21 23:59:47', '2019-01-22 00:04:39', NULL, '123213');
 
 --
 -- Indexes for dumped tables
@@ -363,13 +370,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `customs`
 --
 ALTER TABLE `customs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -387,7 +394,7 @@ ALTER TABLE `planos`
 -- AUTO_INCREMENT for table `projetos`
 --
 ALTER TABLE `projetos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `status_projs`
@@ -399,7 +406,7 @@ ALTER TABLE `status_projs`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
