@@ -19,7 +19,7 @@ class CustomController extends Controller {
 
     public function index() {
         $title = 'Projetos personalizados tipos';
-        $customs = $this->custom->select('id', 'tamanho')->paginate($this->totalPage);
+        $customs = $this->custom->select('id', 'tamanho','ordem')->paginate($this->totalPage);
         return view('admin.customs.index', compact('customs', 'title'));
     }
 

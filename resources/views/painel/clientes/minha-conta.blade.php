@@ -27,6 +27,8 @@
             <b>Endereço: </b>{{$cliente->endereco}}
             <br>
             <b>Número: </b>{{$cliente->numero}}
+            <br>
+            <b>Complemento: </b>{{$cliente->complemento}}
 
         </p>
         <br>

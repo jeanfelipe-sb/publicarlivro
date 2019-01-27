@@ -122,6 +122,11 @@
                         <div class="input-group-icon mt-10">
                             <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
                             <input id="numero" type="text" value="{{$cliente->numero}}" name="numero" placeholder="Número" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Número'" required class="single-input">
+                        </div> 
+                        Complemento
+                        <div class="input-group-icon mt-10">
+                            <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                            <input id="complemento" type="text" value="{{$cliente->complemento}}" name="complemento" placeholder="Complemento" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Complemento'" required class="single-input">
                         </div>
                         E-mail
                         <div class="mt-10">

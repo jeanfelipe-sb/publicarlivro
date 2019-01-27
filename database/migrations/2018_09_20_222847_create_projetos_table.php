@@ -25,7 +25,7 @@ class CreateProjetosTable extends Migration {
             $table->date('prazo')->nullable();
             $table->text('observacao')->nullable();
             $table->double('valor');
-            $table->string('preco_sugerido');
+            $table->string('preco_sugerido')->nullable();
             $table->text('notas')->nullable();
             $table->string('original_file')->nullable();
             $table->boolean('pago');

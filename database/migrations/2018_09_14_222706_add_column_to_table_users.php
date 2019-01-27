@@ -21,6 +21,7 @@ class AddColumnToTableUsers extends Migration {
             $table->string('telefone')->nullable();
             $table->string('cep');
             $table->string('bairro');
+            $table->string('complemento')->nullable();
             $table->string('cidade');
             $table->string('estado');
             $table->integer('numero');

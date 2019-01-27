@@ -210,6 +210,20 @@
                         </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="single-element-widget col-md-12">
+                                <h4>Complemento</h4>
+                                <div class="input-group-icon mt-10 form-group {{ $errors->has('complemento') ? ' has-error' : '' }}">
+                                    <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                                    <input id="complemento" type="text" name="complemento" placeholder="Insira o complemento" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Insira o complemento'" required class="single-input">
+                                    @if ($errors->has('complemento'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('complemento') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="single-element-widget col-md-12">
                                 <h4>Bairro</h4>
                                 <div class="input-group-icon mt-10">
                                     <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>

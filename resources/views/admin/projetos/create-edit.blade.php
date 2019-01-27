@@ -47,7 +47,7 @@
         </div>  
         <div class="form-group">
             <label for="exampleInputEmail1">Preço sugerido</label>
-            <input name="preco_sugerido" type="number" required step=".01" min="0" value="{{$projeto->preco_sugerido or old('preco_sugerido')}}" class="form-control" placeholder="Defina o preço sugerido">
+            <input name="preco_sugerido" type="number"  step=".01" min="0" value="{{$projeto->preco_sugerido or old('preco_sugerido')}}" class="form-control" placeholder="Defina o preço sugerido">
         </div>  
 
         <div class="form-group">

@@ -72,7 +72,7 @@
                 <b style="font-size: 20px">Sergio Vieira</b>
                 <br>
                 <p>
-                    atuou por mais de 10 anos nas áreas de gestão de logística e qualidade de material gráfico e no acompanhamento na produção, revisão e diagramação de livros. Ele é o cara que cuida com todo o carinho do atendimento, produção e entrega dos livros dos nossos autores. 
+                    Atuou por mais de 10 anos nas áreas de gestão de logística e qualidade de material gráfico e no acompanhamento na produção, revisão e diagramação de livros. Ele é o cara que cuida com todo o carinho do atendimento, produção e entrega dos livros dos nossos autores. 
                 </p>
             </div>
             </p>
@@ -84,7 +84,7 @@
                 <b style="font-size: 20px">Christofer Scorzato</b>
                 <br>
                 <p>
-                    Atuou por mais de 15 anos na gestão de produção de parques gráficos, cuidando de todo o ciclo; da entrada do pedido na gráfica até seu despacho para clientes. Ele é o cara que cuida com a máxima atenção da produção nas gráficas, conhecendo todos os tipos de papéis disponíveis e mantendo o padrão de qualidade contratada. 
+                    Atuou por mais de 15 anos na gestão de produção de parques gráficos, cuidando de todo o ciclo; da entrada do pedido na gráfica até seu despacho para os clientes. Ele é o cara que cuida com a máxima atenção da produção das gráficas, conhecendo todos os tipos de papéis disponíveis e mantendo o padrão de qualidade contratada. 
                 </p>
             </div>
             <div class="col-md-3 text-center photo">                   
@@ -94,7 +94,7 @@
                 <b style="font-size: 20px">Marcelo Figueiral</b>
                 <br>
                 <p>
-                    atuou por mais de 20 anos em áreas de negócios nas formulações de estratégias de novos projetos para novos mercados. Autor de 02 livros conhece de perto a dificuldade para tirar do papel projetos e transformar em livros. Ele é o cara que cuida da experiência de cada autor ao longo do projeto de publicação, acompanhando cada etapa do projeto para que saia de acordo com o que cada autor quer.         
+                    Atuou por mais de 20 anos em áreas de negócios nas formulações de estratégias de novos projetos para novos mercados. Autor de 02 livros conhece de perto a dificuldade para concretizar um projeto e transformar-lo em livros. Ele é o cara que cuida da experiência de cada autor ao longo do ciclo de publicação, acompanhando cada etapa para que o resultado esteja de acordo com o sonho de cada autor.         
                 </p>
             </div>
         </div> 

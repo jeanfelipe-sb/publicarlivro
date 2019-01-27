@@ -10,6 +10,7 @@
 <h4><b>Preço Paginas Coloridas: </b>R$ {{number_format($custom->pc, 2, ',', '.')}}</h4>
 <h4><b>Preço capa: </b>R$ {{number_format($custom->capa, 2, ',', '.')}}</h4>
 <h4><b>Preço editoração: </b>R$ {{number_format($custom->editoracao, 2, ',', '.')}}</h4>
+<h4><b>Ordem de exibição no site: </b> {{$custom->ordem}}</h4>
 
 
 @if(isset($errors)&& count ($errors)>0)

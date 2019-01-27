@@ -28,7 +28,7 @@ use RegistersUsers;
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/painel';
 
     /**
      * Create a new controller instance.
@@ -104,6 +104,7 @@ use RegistersUsers;
             'endereco' => $data['endereco'],
             'numero' => $data['numero'],
             'email' => $data['email'],
+            'complemento' => $data['complemento'],
             'password' => bcrypt($data['password']),
         ];
 

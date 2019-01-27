@@ -81,7 +81,7 @@
                         <div class="single-element-widget col-md-6 col-lg-9">
                             Quantidade de páginas preto e braco
                             <div class="mt-10 ">
-                                <input id="n1" type="number" name="pb" onblur="calcular()" placeholder="Total de páginas" onkeypress='return SomenteNumero(event)' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Exemplares'" required class="single-input" >
+                                <input value="{{old('pb')}}" id="n1" type="number" name="pb" onblur="calcular()" placeholder="Total de páginas" onkeypress='return SomenteNumero(event)' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Exemplares'" required class="single-input" >
                             </div>                           
                         </div>                      
                     </div>
@@ -95,9 +95,10 @@
                     </div>
                     <div class="col-lg-6 col-md-12">                        
                         <div class="single-element-widget col-md-6 col-lg-9">
-                            Total de páginas     
-                            <div class="mt-10 ">
-                                <input id="resultado" disabled value="{{old('paginas')}}" type="number" name="paginas" placeholder="Páginas" onkeypress='return SomenteNumero(event)' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Páginas'" required class="single-input" >
+                              
+                            <div class="mt-10 " style="font-size: 20px">
+                                Total de páginas:    
+                                <b><label id="resultado"  ></label></b>
                             </div>                           
                         </div>                      
                     </div>
@@ -165,7 +166,7 @@
     function calcular() {
         var n1 = parseInt(document.getElementById('n1').value, 10);
         var n2 = parseInt(document.getElementById('n2').value, 10);
-        document.getElementById('resultado').value = n1 + n2;
+        document.getElementById('resultado').textContent = n1 + n2;
     }
 </script>
 @endsection

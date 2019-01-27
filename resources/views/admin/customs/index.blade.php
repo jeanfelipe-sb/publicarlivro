@@ -8,6 +8,7 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Tamanho</th>
+            <th scope="col">Ordem</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>
@@ -16,6 +17,7 @@
         <tr>
             <th scope="row">{{$custom->id}}</th>
             <td><a href="{{route('customs.show',$custom->id)}}">{{$custom->tamanho}}</a></td>
+            <td><a href="{{route('customs.show',$custom->id)}}">{{$custom->ordem}}</a></td>
             <td>                
                 <a href="{{route('customs.show',$custom->id)}}" title="Visualizar" class="actions view"><span class="glyphicon glyphicon-eye-open"></span></a>
                 <a href="{{route('customs.edit',$custom->id)}}" title="Editar dados"class="actions edit"><span class="glyphicon glyphicon-pencil"></span></a>

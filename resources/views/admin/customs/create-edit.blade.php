@@ -40,6 +40,10 @@
             <label for="exampleInputEmail1">Preço da editoração</label>
             <input name="editoracao" type="number" required step=".01" min="0" value="{{$custom->editoracao or old('editoracao')}}" class="form-control" placeholder="Defina o preço">
         </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Ordem de exibição no site</label>
+            <input name="ordem" type="number" required  min="0" value="{{$custom->ordem or old('ordem')}}" class="form-control" placeholder="Defina a ordem">
+        </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
     @endsection

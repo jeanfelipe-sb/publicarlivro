@@ -191,17 +191,16 @@ class ProjetosController extends Controller {
      */
     public function custom() {
         $tituloPage = 'Criar Projeto personalizado';
-        $customs = Custom::all();
+        $customs = Custom::orderBy('ordem', 'desc')->get();
         return view('site.custom', compact('tituloPage', 'customs'));
     }
 
     public function customstore(Request $request) {
         //Pega os dados do formulário
         $dataForm = $request->all();
-
-        if ($request->paginas <  $request->pc) {
-            return redirect()->back()->withInput()->with('message', 'O número de páginas coloridas não ser maior que o total de páginas. ');
-        }
+//        if ($request->paginas <  $request->pc) {
+//            return redirect()->back()->withInput()->with('message', 'O número de páginas coloridas não ser maior que o total de páginas. ');
+//        }
 
         //Procura o status no db
         $status = StatusProj::where('ordem', 0)->first();
@@ -211,9 +210,9 @@ class ProjetosController extends Controller {
 
         $custom = Custom::find($dataForm['custom'])->first();
         //Quantidade de páginas preto e branco
-        $pb = $dataForm['paginas'] - $dataForm['pc'];
+        $totalPaginas = $dataForm['pc']+$dataForm['pb'];
 
-        $valor = ((($custom['pb'] * $pb) + ($custom['pc'] *
+        $valor = ((($custom['pb'] * $dataForm['pb']) + ($custom['pc'] *
                 $dataForm['pc']) + $custom['capa']) *
                 $dataForm['exemplares']) + $custom['editoracao'];
 //        print_r($valor);
@@ -222,7 +221,7 @@ class ProjetosController extends Controller {
         $file_extension = $request->original_file->extension();
 
         //se a extensão do arquivo for doc e docx
-        if ($file_extension == 'doc' || $file_extension == 'docx') {
+            if ($file_extension == 'doc' || $file_extension == 'docx') {
             // Verifica se informou o arquivo e se é válido
             if ($request->hasFile('original_file') && $request->file('original_file')->isValid()) {
                 // Define um aleatório para o arquivo baseado no timestamps atual
@@ -248,11 +247,11 @@ class ProjetosController extends Controller {
             'plano' => 'Plano Personalizado',
             'titulo' => $dataForm['titulo'],
             'autores' => $dataForm['autores'],
-            'paginas' => $dataForm['paginas'],
+            'paginas' => $totalPaginas,
             'tamanho' => $custom['tamanho'],
             'exemplares' => $dataForm['exemplares'],
             'endereco_entrega' => 'Mesmo',
-            'pb' => $pb,
+            'pb' => $dataForm['pb'],
             'pc' => $dataForm['pc'],
             'prazo' => $date->format('Y-m-d '),
             'observacao' => $dataForm['observacao'],
