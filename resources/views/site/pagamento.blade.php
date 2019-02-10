@@ -56,10 +56,10 @@
                             <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
                                 <i class="fa fa-barcode"></i>  Boleto</a>
                         </li>
-                        <li class="nav-item">
+<!--                        <li class="nav-item">
                             <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
                                 <i class="fa fa-university"></i> Tranferência</a>
-                        </li>
+                        </li>-->
                     </ul>
 
                     <div class="tab-content">
@@ -159,7 +159,7 @@
                             </form>
                         </div>
 
-                        <div class="tab-pane fade" id="nav-tab-bank">
+<!--                        <div class="tab-pane fade" id="nav-tab-bank">
                             <p>Bank accaunt details</p>
                             <dl class="param">
                                 <dt>BANCO: </dt>
@@ -175,7 +175,7 @@
                             </dl>
                             <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                 tempor incididunt ut labore et dolore magna aliqua. </p>
-                        </div> <!-- tab-pane.// -->
+                        </div>  tab-pane.// -->
                     </div> <!-- tab-content .// -->
 
                 </div> <!-- card-body.// -->

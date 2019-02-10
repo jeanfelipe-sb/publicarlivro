@@ -50,7 +50,7 @@
                                         <label>
                                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Lembrar-me
                                         </label>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -62,8 +62,8 @@
                                 Esqueceu a senha?
                             </a>
                             <br/>
-                            
                             <br/>
+                            <label class="custom-control-label" for="debito"><a href="{{route('termos')}}" target="_blank">Termos de uso</a></label>
                             <br/>
                         </div>
                     </form>	

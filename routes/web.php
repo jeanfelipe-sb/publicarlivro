@@ -19,6 +19,7 @@ Route::get('/page', 'Site\SiteController@page');
 Route::get('/sobre-nos', 'Site\SiteController@about')->name('about');
 Route::get('/servicos', 'Site\SiteController@servicos')->name('servicos');
 Route::get('/contato', 'Site\SiteController@contato')->name('contato');
+Route::get('/termos', 'Site\SiteController@termos')->name('termos');
 Route::get('/personalizar', 'PanelCliente\ProjetosController@custom')->name('site.custom');
 
 

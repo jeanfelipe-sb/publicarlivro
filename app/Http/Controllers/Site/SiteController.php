@@ -34,10 +34,14 @@ class SiteController extends Controller {
         return view('site.page');
     }
 
+    public function termos() {
+        return view('site.termos');
+    }
+
     public function publique() {
         $titulo = 'Publique agora';
         $planos = Plano::all();
-        return view('site.publique', compact('planos','titulo'));
+        return view('site.publique', compact('planos', 'titulo'));
     }
 
 }

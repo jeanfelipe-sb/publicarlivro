@@ -281,7 +281,7 @@
                             <div class="single-element-widget col-md-12">
                                 <div class="custom-control custom-radio mt-10 form-group ">
                                     <input id="debito" name="paymentMethod" type="checkbox" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="debito">Aceito os <a href="#">Termos de uso</a></label>
+                                    <label class="custom-control-label" for="debito">Aceito os <a href="{{route('termos')}}" target="_blank">Termos de uso</a></label>
                                 </div>
                             </div>
                         </div>
